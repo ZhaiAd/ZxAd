@@ -1,0 +1,3 @@
+rootProject.name = "ZhaiXinAdvert"
+include ':app'
+include ':AdCore'

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp">
+
+            <ImageView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginTop="50dp"
+                android:contentDescription="@null"
+                android:src="@drawable/img_logo" />
+
+            <TextView
+                android:id="@+id/mTvTeamVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="@string/textTeamVersion" />
+
+            <TextView
+                android:id="@+id/rewardVideo"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="rewardAd"
+                android:text="@string/textRewardVideo"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fullScreenVideo"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="fullScreenAd"
+                android:text="@string/textFullScreenVideo"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/interstitialAd"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="interstitialAd"
+                android:text="@string/textInterstitialAd"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/splashAd"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="splashAd"
+                android:text="@string/textSplashAd"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bannerAd"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="bannerAd"
+                android:text="@string/textBannerAd"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nativeExpressAd"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="feedAd"
+                android:text="@string/textNativeExpressAd"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/mySplash"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_button_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="mySplash"
+                android:text="@string/zhaixinad"
+                android:textColor="@color/shape_button_color"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

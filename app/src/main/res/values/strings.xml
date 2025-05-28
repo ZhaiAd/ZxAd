@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">宅心科技</string>
+    <string name="textTeamVersion">宅心科技广告聚合 %s</string>
+    <string name="textRewardVideo">激励视频</string>
+    <string name="textFullScreenVideo">全屏视频</string>
+    <string name="textInterstitialAd">插屏广告</string>
+    <string name="textSplashAd">开屏广告</string>
+    <string name="textBannerAd">横幅广告</string>
+    <string name="textNativeExpressAd">信息流(模版)</string>
+    <string name="zhaixinad">宅心广告</string>
+</resources>

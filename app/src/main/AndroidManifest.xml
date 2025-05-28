@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.heart.weather">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="com.zhaixin.advert.demo.App"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Main"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup"
+        tools:targetApi="31">
+        <activity
+            android:name="com.zhaixin.advert.demo.MySplashActivity"
+            android:theme="@style/Theme.Fullscreen"
+            android:exported="false" />
+        <activity android:name="com.zhaixin.advert.demo.SplashActivity"
+            android:theme="@style/Theme.Fullscreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zhaixin.advert.demo.MainActivity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.zhaixin.advert.demo.FeedListActivity"
+            android:exported="true"
+            android:launchMode="singleInstance" />
+    </application>
+
+</manifest>
