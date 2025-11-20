@@ -3,12 +3,10 @@ package com.zhaixin.advert.demo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.heart.weather.R;
 import com.zhaixin.advert.Platform;
@@ -18,9 +16,13 @@ import com.zhaixin.listener.AdViewListener;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 
 public class SplashActivity extends AppCompatActivity {
+
     private FrameLayout content;
+
+    private boolean adClose = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
 
         content = findViewById(R.id.content);
 
-        SplashAd ad = new SplashAd("224000001");
+        SplashAd ad = new SplashAd("2629995460");
         ad.enableDebug();
         if (getIntent().hasExtra("platforms")) {
             ad.enableDebug((Platform[]) getIntent()
@@ -50,7 +52,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onNoAd(int code, String message) {
-                Toast.makeText(SplashActivity.this, "onNoAd", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -65,7 +66,10 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onClose() {
-                Toast.makeText(SplashActivity.this, "onClose", Toast.LENGTH_SHORT).show();
+                if (!getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+                    adClose = true;
+                    return;
+                }
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -83,8 +87,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onResourceError() {
-                Toast.makeText(SplashActivity.this, "onResourceError", Toast.LENGTH_LONG).show();
-                Log.d("Hao", "onResourceError");
                 if (!SplashActivity.this.isFinishing()) {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
@@ -95,5 +97,19 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
         ad.load(this);
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adClose) {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        }
+    }
+
 }

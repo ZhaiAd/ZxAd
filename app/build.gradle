@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.heart.weather"
+        applicationId "com.lockin.loock"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
@@ -17,16 +17,29 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //签名配置
+    signingConfigs {
+        debug {
+            storeFile file('../app/src/main/jks/weather.jks')
+            storePassword '123456'
+            keyAlias 'weather'
+            keyPassword '123456'
+        }
+
     }
 }
 
@@ -35,7 +48,30 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.4'
 
-    implementation fileTree(include: ['*.jar','*.aar'], dir: '../AdnLibs')
+    //美数
+    //脉盟
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okio:okio:3.6.0'
+    implementation "com.android.support.constraint:constraint-layout:2.0.4"
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //多盟
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.google.protobuf:protobuf-java:4.27.5'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+
+
+    //惊鸿动能
+    implementation "com.huawei.hms:ads-lite:13.4.78.301"
     implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //飞梭
+    implementation "com.google.guava:guava:31.0.1-android"
+
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
 }

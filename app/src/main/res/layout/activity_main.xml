@@ -32,6 +32,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 tools:text="@string/textTeamVersion" />
 
             <TextView
@@ -119,7 +120,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/mySplash"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
@@ -131,7 +131,8 @@
                 android:onClick="mySplash"
                 android:text="@string/zhaixinad"
                 android:textColor="@color/shape_button_color"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
@@ -140,5 +141,6 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 
 </LinearLayout>

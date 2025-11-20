@@ -1,3 +1,2 @@
-rootProject.name = "ZhaiXinAdvert"
+rootProject.name = "ZXAD"
 include ':app'
-include ':AdCore'

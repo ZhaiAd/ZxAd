@@ -70,7 +70,7 @@ public class FeedListActivity extends AppCompatActivity {
         if (!swipeRefresh.isRefreshing()) {
             swipeRefresh.setEnabled(false);
         }
-        FeedAd advert = new FeedAd("2643808369");
+        FeedAd advert = new FeedAd("2540096452");
         if (getIntent().hasExtra("platforms")) {
             advert.enableDebug((Platform[]) getIntent()
                     .getSerializableExtra("platforms"));
@@ -147,11 +147,13 @@ public class FeedListActivity extends AppCompatActivity {
             }
             if (holder instanceof AdvertHolder) {
                 AdvertHolder advertHolder = (AdvertHolder) holder;
-                View advert = ((FeedAdData) mData.get(position)).getAdView();
-                if (advert.getParent() != null)
-                    ((ViewGroup) advert.getParent()).removeView(advert);
                 advertHolder.container.removeAllViews();
-                advertHolder.container.addView(advert, mParams);
+                View advert = ((FeedAdData) mData.get(position)).getAdView();
+                if (advert != null) {
+                    if (advert.getParent() != null)
+                        ((ViewGroup) advert.getParent()).removeView(advert);
+                    advertHolder.container.addView(advert, mParams);
+                }
             }
         }
 

@@ -2,6 +2,7 @@ package com.zhaixin.advert.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,15 +10,18 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.gzuliyujiang.oaid.DeviceID;
+import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.IGetter;
 import com.heart.weather.R;
 import com.zhaixin.ZXAD;
-import com.zhaixin.advert.BannerAd;
 import com.zhaixin.advert.FullScreenAd;
 import com.zhaixin.advert.InterstitialAd;
 import com.zhaixin.advert.Platform;
 import com.zhaixin.advert.RewardVideoAd;
 import com.zhaixin.listener.AdLoadListener;
 import com.zhaixin.listener.AdViewListener;
+import com.zhaixin.listener.VideoPlayListener;
 
 import java.util.ArrayList;
 
@@ -32,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
 //    插屏： 224000003
 
     private Menu mMenu;
-    private FrameLayout mContent;
-    private boolean debug, bd, ks, ylh, csj, zx;
 
+    private FrameLayout mContent;
+
+    private boolean debug, bd, ks, ylh, csj, zx, bz, zy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mContent = findViewById(R.id.content);
         TextView mTvTeamVersion = findViewById(R.id.mTvTeamVersion);
         mTvTeamVersion.setText(getString(R.string.textTeamVersion, ZXAD.getVersion()));
+
     }
 
     @Override
@@ -59,12 +65,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.debug) {
             debug = item.isChecked();
-            bd = ks = ylh = csj = zx = debug;
+            bd = ks = ylh = csj = zx = bz = zy = debug;
             mMenu.findItem(R.id.bd).setChecked(bd).setVisible(debug);
             mMenu.findItem(R.id.ks).setChecked(ks).setVisible(debug);
             mMenu.findItem(R.id.ylh).setChecked(ylh).setVisible(debug);
             mMenu.findItem(R.id.csj).setChecked(csj).setVisible(debug);
             mMenu.findItem(R.id.zx).setChecked(zx).setVisible(debug);
+            mMenu.findItem(R.id.bz).setChecked(bz).setVisible(debug);
+            mMenu.findItem(R.id.zy).setChecked(zy).setVisible(debug);
         } else {
             if (id == R.id.bd) {
                 bd = item.isChecked();
@@ -81,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.zx) {
                 zx = item.isChecked();
             }
-            if (!bd && !ks && !ylh && !csj && !zx) {
+            if (id == R.id.bz) {
+                bz = item.isChecked();
+            }
+            if (id == R.id.zy) {
+                zy = item.isChecked();
+            }
+            if (!bd && !ks && !ylh && !csj && !zx && !bz && !zy) {
                 debug = false;
                 mMenu.findItem(R.id.debug).setChecked(debug);
                 mMenu.findItem(R.id.bd).setChecked(bd).setVisible(debug);
@@ -89,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 mMenu.findItem(R.id.ylh).setChecked(ylh).setVisible(debug);
                 mMenu.findItem(R.id.csj).setChecked(csj).setVisible(debug);
                 mMenu.findItem(R.id.zx).setChecked(zx).setVisible(debug);
+                mMenu.findItem(R.id.bz).setChecked(bz).setVisible(debug);
+                mMenu.findItem(R.id.zy).setChecked(zy).setVisible(debug);
             }
         }
         return super.onOptionsItemSelected(item);
@@ -101,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         if (ylh) list.add(Platform.YLH);
         if (csj) list.add(Platform.CSJ);
         if (zx) list.add(Platform.ZX);
+        if (bz) list.add(Platform.BZ);
+        if (zy) list.add(Platform.BZ);
+        if (zy) list.add(Platform.ZY);
 
         Platform[] platforms = new Platform[list.size()];
         list.toArray(platforms);
@@ -109,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 激励视频
     public void rewardAd(View view) {
-        RewardVideoAd ad = new RewardVideoAd("2034303863");
-        if (debug) ad.enableDebug(getDebugPlatforms());
+        RewardVideoAd ad = new RewardVideoAd("2919646015");
+        ad.enableDebug();
         ad.setAdLoadListener(new AdLoadListener() {
             @Override
             public void onLoad() {
@@ -119,6 +138,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNoAd(int code, String message) {
+            }
+        });
+        ad.setVideoPlayListener(new VideoPlayListener() {
+            @Override
+            public void onPlayStart() {
+
+            }
+
+            @Override
+            public void onPlaySkip() {
+
+            }
+
+            @Override
+            public void onPlayFinish() {
+
             }
         });
         ad.setAdViewListener(new AdViewListener() {
@@ -142,14 +177,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResourceError() {
             }
+
+
         });
         ad.load(MainActivity.this);
+
     }
 
     // 全屏视频
     public void fullScreenAd(View view) {
-        FullScreenAd ad = new FullScreenAd("2522350738");
-        if (debug) ad.enableDebug(getDebugPlatforms());
+        FullScreenAd ad = new FullScreenAd("2021839469");
+        ad.enableDebug();
         ad.setAdLoadListener(new AdLoadListener() {
             @Override
             public void onLoad() {
@@ -166,8 +204,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 插屏广告
     public void interstitialAd(View view) {
-        InterstitialAd ad = new InterstitialAd("224000003");
-        if (debug) ad.enableDebug(getDebugPlatforms());
+        InterstitialAd ad = new InterstitialAd("2102886533");
+        ad.enableDebug();
         ad.setAdLoadListener(new AdLoadListener() {
             @Override
             public void onLoad() {
@@ -192,21 +230,8 @@ public class MainActivity extends AppCompatActivity {
     // 横幅广告
     public void bannerAd(View view) {
 
-        BannerAd ad = new BannerAd("224000002");
-        ad.setAdLoadListener(new AdLoadListener() {
-            @Override
-            public void onLoad() {
+        Banner(view);
 
-                ad.show(mContent);
-            }
-
-            @Override
-            public void onNoAd(int code, String message) {
-                Toast.makeText(MainActivity.this, "无广告", Toast.LENGTH_SHORT).show();
-            }
-        });
-        // 设置 Banner 广告尺寸（示例：屏幕宽度 x 50px）
-        ad.load(MainActivity.this, mContent.getMeasuredWidth());
     }
 
     // 信息流(模板)
@@ -214,12 +239,30 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FeedListActivity.class);
         if (debug) intent.putExtra("platforms", getDebugPlatforms());
         startActivity(intent);
+
+        DeviceIdentifier.getOAID(MainActivity.this);
+
+
+        DeviceID.getOAID(MainActivity.this, new IGetter() {
+            @Override
+            public void onOAIDGetComplete(String result) {
+                Log.d("Hao", "oaid=>" + result);
+
+            }
+
+            @Override
+            public void onOAIDGetError(Exception error) {
+
+            }
+        });
+
     }
 
-    // 开屏广告
-    public void mySplash(View view) {
-        Intent intent = new Intent(this, MySplashActivity.class);
+    // 横幅广告
+    public void Banner(View view) {
+        Intent intent = new Intent(this, BannerActivity.class);
         if (debug) intent.putExtra("platforms", getDebugPlatforms());
         startActivity(intent);
     }
+
 }
