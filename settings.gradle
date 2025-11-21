@@ -1,2 +1,2 @@
 rootProject.name = "ZXAD"
-include ':app'
+include ':app', ':library'
