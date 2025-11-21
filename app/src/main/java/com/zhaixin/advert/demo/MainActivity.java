@@ -15,6 +15,7 @@ import com.github.gzuliyujiang.oaid.DeviceIdentifier;
 import com.github.gzuliyujiang.oaid.IGetter;
 import com.heart.weather.R;
 import com.zhaixin.ZXAD;
+import com.zhaixin.advert.BannerAd;
 import com.zhaixin.advert.FullScreenAd;
 import com.zhaixin.advert.InterstitialAd;
 import com.zhaixin.advert.Platform;
@@ -230,7 +231,27 @@ public class MainActivity extends AppCompatActivity {
     // 横幅广告
     public void bannerAd(View view) {
 
-        Banner(view);
+        BannerAd ad = new BannerAd("2208423313");
+
+        ad.enableDebug();
+
+        ad.setAdLoadListener(new AdLoadListener() {
+            @Override
+            public void onLoad() {
+
+                ad.show(mContent);
+            }
+
+            @Override
+            public void onNoAd(int code, String message) {
+                Toast.makeText(MainActivity.this, "无广告", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 设置 Banner 广告尺寸
+        ad.load(MainActivity.this, mContent.getWidth(), 0);
+        // 在这里初始化视图和逻辑
+//        Banner(view);
 
     }
 

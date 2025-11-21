@@ -62,7 +62,6 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-java:4.27.5'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
 
-
     //惊鸿动能
     implementation "com.huawei.hms:ads-lite:13.4.78.301"
     implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
