@@ -31,11 +31,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-//    应用id 4820001
-//    开屏： 224000001
-//    banner： 224000002
-//    插屏： 224000003
-
     private Menu mMenu;
 
     private FrameLayout mContent;
